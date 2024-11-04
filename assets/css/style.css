@@ -319,9 +319,11 @@ h6 {
 
 .img-fluid {
 	border-radius: 10px;
+	width: 100%;
 }
 
 .img-profile {
+	width: 1000px;
 	transition: transform 0.4s ease;
 }
 
@@ -592,7 +594,7 @@ section {
 }
 
 .progress {
-	width: 80%;
+	width: 100%;
 }
 
 .skills .progress .skill {
