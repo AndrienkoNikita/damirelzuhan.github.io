@@ -18,3 +18,20 @@ portfolioWrap.addEventListener('mouseleave', () => {
 	// Возвращаем изображение в исходное положение при уходе курсора
 	portfolioImage.style.transform = 'scale(1) translate(0, 0)'
 })
+
+if (!('ontouchstart' in window)) {
+	// Применяем эффекты только на устройствах без сенсорного экрана
+	VanillaTilt.init(document.querySelectorAll('.wine'), {
+		max: 25,
+		speed: 400,
+		scale: 1.1,
+	})
+}
+
+if (!window.matchMedia('(hover: none)').matches) {
+	VanillaTilt.init(document.querySelectorAll('.wine'), {
+		max: 25,
+		speed: 400,
+		scale: 1.1,
+	})
+}

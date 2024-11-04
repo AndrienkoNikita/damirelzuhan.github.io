@@ -24,6 +24,15 @@ a:hover {
 	text-decoration: none;
 }
 
+@media (hover: none) {
+	.wine {
+		/* Отключаем эффекты, например, scale или filter */
+		transform: none;
+		filter: none;
+		/* Любые другие стили для отключения эффектов */
+	}
+}
+
 h1,
 h2,
 h3,
