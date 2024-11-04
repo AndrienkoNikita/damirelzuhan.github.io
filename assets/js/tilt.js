@@ -664,3 +664,14 @@ VanillaTilt.prototype.update = function update() {
 
 	this.updateCall = null
 }
+
+if (window.innerWidth > 768) {
+	// Условие для ширины экрана (например, 768px)
+	VanillaTilt.init(document.querySelectorAll('.tilt'), {
+		max: 15,
+		scale: 1.1,
+		speed: 400,
+		glare: true,
+		'max-glare': 0.5,
+	})
+}
