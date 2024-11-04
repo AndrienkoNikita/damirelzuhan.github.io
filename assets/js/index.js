@@ -19,19 +19,16 @@ portfolioWrap.addEventListener('mouseleave', () => {
 	portfolioImage.style.transform = 'scale(1) translate(0, 0)'
 })
 
-if (!('ontouchstart' in window)) {
-	// Применяем эффекты только на устройствах без сенсорного экрана
-	VanillaTilt.init(document.querySelectorAll('.wine'), {
-		max: 25,
-		speed: 400,
-		scale: 1.1,
-	})
-}
-
-if (!window.matchMedia('(hover: none)').matches) {
-	VanillaTilt.init(document.querySelectorAll('.wine'), {
-		max: 25,
-		speed: 400,
-		scale: 1.1,
-	})
-}
+document.addEventListener('DOMContentLoaded', () => {
+	// Проверяем наличие сенсорного экрана
+	if ('ontouchstart' in window || navigator.maxTouchPoints) {
+		// Ищем все элементы с tilt-эффектом
+		const tiltElements = document.querySelectorAll('[data-tilt]')
+		tiltElements.forEach(el => {
+			// Удаляем атрибуты, связанные с tilt-эффектом
+			el.removeAttribute('data-tilt')
+			el.removeAttribute('data-tilt-glare')
+			el.removeAttribute('data-tilt-scale')
+		})
+	}
+})
