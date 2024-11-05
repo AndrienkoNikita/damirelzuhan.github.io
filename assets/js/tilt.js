@@ -681,3 +681,25 @@ VanillaTilt.prototype.update = function update() {
 
 	this.updateCall = null
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+	// Проверка: если устройство поддерживает мышь и не сенсорное
+	const isHoverableDevice =
+		window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+		navigator.maxTouchPoints === 0 // Дополнительная проверка на отсутствие сенсоров
+
+	if (isHoverableDevice) {
+		// Инициализация библиотеки Tilt для устройств с мышью
+		VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
+			max: 15,
+			scale: 1.1,
+			// Другие настройки tilt-эффекта
+		})
+	} else {
+		// Если устройство сенсорное, сбросить атрибут data-tilt и убрать трансформации
+		document.querySelectorAll('[data-tilt]').forEach(element => {
+			element.removeAttribute('data-tilt')
+			element.style.transform = '' // Сбрасываем трансформацию
+		})
+	}
+})
