@@ -693,12 +693,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
 			max: 15,
 			scale: 1.1,
-			// Другие настройки tilt-эффекта
+			glare: true,
+			'max-glare': 0.5,
 		})
 	} else {
-		// Если устройство сенсорное, сбросить атрибут data-tilt и убрать трансформации
+		// Если устройство сенсорное, убираем все эффекты tilt
 		document.querySelectorAll('[data-tilt]').forEach(element => {
 			element.removeAttribute('data-tilt')
+			element.removeAttribute('data-tilt-glare')
+			element.removeAttribute('data-tilt-scale')
 			element.style.transform = '' // Сбрасываем трансформацию
 		})
 	}
