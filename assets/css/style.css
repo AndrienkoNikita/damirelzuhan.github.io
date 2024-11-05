@@ -64,17 +64,24 @@ h6 {
 	top: 10px;
 	right: 10px;
 	z-index: 10000;
-
 	display: inline-block;
 	max-width: 150px; /* Задайте максимальную ширину, если нужно ограничение */
 	width: auto; /* Пусть ширина подстраивается под содержимое */
-	border-radius: 5px;
-	padding: 5px 10px;
-
-	font-family: 'Open Sans', sans-serif;
+	padding: 10px 20px;
+	font-family: 'Open Sans', sans-serif; /* Ширина блока */
+	border-radius: 8px; /* Сглаженные углы */
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 0.1),
+		rgba(255, 255, 255, 0)
+	);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 20px;
 }
 
 .language-selector .lang-link {
+	position: relative;
 	color: #45505b;
 	text-decoration: none;
 	margin: 0 5px;
@@ -326,18 +333,25 @@ h6 {
 	overflow: hidden; /* Скрываем лишнее при увеличении */
 }
 
+.img-profile {
+	position: relative;
+	transition: transform 0.4s ease;
+}
+
 .img-fluid {
 	border-radius: 10px;
 	width: 100%;
 }
 
-.img-profile {
-	width: 1000px;
-	transition: transform 0.4s ease;
+.img-profile:hover {
+	transform: scale(1.03);
 }
 
-.img-profile:hover {
-	transform: scale(1.1);
+@media (pointer: coarse) {
+	.img-profile {
+		transform: scale(1);
+		pointer-events: none;
+	}
 }
 
 .photoshop-img {
@@ -436,6 +450,10 @@ h6 {
 
 	.language-selector {
 		left: 10px;
+	}
+
+	.img-fluid {
+		margin-top: 0%;
 	}
 }
 
