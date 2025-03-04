@@ -1390,3 +1390,37 @@ section {
 	object-fit: cover; /* Обрезает изображение, сохраняя пропорции */
 	display: block; /* Убирает возможные лишние отступы */
 }
+
+@media screen and (max-width: 768px) {
+	.swiper-slide img {
+		height: 300px;
+	}
+}
+
+@media screen and (max-width: 1600px) {
+	.name h1 {
+		font-size: 70px;
+	}
+
+	#hero p {
+		font-size: 35px;
+	}
+
+	#hero .typed {
+		font-size: 35px;
+	}
+}
+
+@media screen and (max-width: 1300px) {
+	.name h1 {
+		font-size: 55px;
+	}
+
+	#hero p {
+		font-size: 25px;
+	}
+
+	#hero .typed {
+		font-size: 25px;
+	}
+}
