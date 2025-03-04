@@ -699,6 +699,7 @@ section {
 .skills .progress-bar {
 	width: 1px;
 	height: 10px;
+	border-radius: 10px;
 	transition: 0.9s;
 	background-color: #4eb651;
 }
@@ -1199,7 +1200,7 @@ section {
 	float: left;
 	width: 44px;
 	height: 44px;
-	background: #eef7ff;
+	background: #f1ffee;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1381,4 +1382,11 @@ section {
 
 #footer .credits {
 	font-size: 13px;
+}
+
+.swiper-slide img {
+	width: 100%; /* Растягивает изображения по ширине контейнера */
+	height: 700px; /* Фиксированная высота (можно подстроить под твой дизайн) */
+	object-fit: cover; /* Обрезает изображение, сохраняя пропорции */
+	display: block; /* Убирает возможные лишние отступы */
 }
