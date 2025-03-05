@@ -345,7 +345,47 @@ h6 {
 
 .portfolio-wrap {
 	position: relative;
-	overflow: hidden; /* Скрываем лишнее при увеличении */
+	overflow: hidden;
+}
+
+.portfolio-wrap img {
+	width: 100%;
+
+	transition: transform 0.3s ease-in-out;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7); /* Затемнённый фон */
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	opacity: 0;
+	transform: scale(1);
+	transition: opacity 0.5s ease, transform 0.1s ease;
+}
+
+.overlay h3 {
+	font-family: 'Capriola';
+	font-size: 2rem;
+	font-weight: 500;
+	padding: 0;
+	margin: 0;
+}
+
+.portfolio-wrap:hover .overlay {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.portfolio-wrap:hover {
+	transform: scale(1.08);
 }
 
 .row {
