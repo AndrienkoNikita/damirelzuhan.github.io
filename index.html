@@ -539,10 +539,11 @@
 
 						<div class="col-lg-8 mt-5 mt-lg-0">
 							<form
-								action="forms/contact.php"
+								action="assets/php/send_mail.php"
 								method="post"
 								role="form"
 								class="php-email-form"
+								id="contact-form"
 							>
 								<div class="row">
 									<div class="col-md-6 form-group">
@@ -580,15 +581,19 @@
 									<textarea
 										class="form-control"
 										name="message"
+										id="message"
 										rows="5"
 										placeholder="Bericht"
 										required
 									></textarea>
 								</div>
 								<div class="my-3">
-									<div class="loading">Loading</div>
-									<div class="error-message"></div>
-									<div class="sent-message">
+									<div class="loading" style="display: none">Loading...</div>
+									<div
+										class="error-message"
+										style="display: none; color: red"
+									></div>
+									<div class="sent-message" style="display: none; color: green">
 										Your message has been sent. Thank you!
 									</div>
 								</div>
@@ -628,6 +633,7 @@
 		<!-- Vendor JS Files -->
 		<script src="assets/js/swiper-bundle.min.js"></script>
 		<script src="assets/js/tilt.js"></script>
+		<script src="assets/js/from-handler.js"></script>
 		<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 		<script src="assets/vendor/aos/aos.js"></script>
 		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
