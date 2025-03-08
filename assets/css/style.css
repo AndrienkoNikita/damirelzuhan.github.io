@@ -1285,6 +1285,29 @@ section {
 	color: #fff;
 }
 
+.php-email-form {
+	position: relative;
+}
+
+.php-email-form::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0.7) url(../img/loading.svg) center / 40px
+		no-repeat;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.5s ease 0s;
+}
+
+.php-email-form._sending::after {
+	opacity: 1;
+	visibility: visible;
+}
+
 .contact .php-email-form {
 	width: 100%;
 	background: #fff;
@@ -1292,6 +1315,55 @@ section {
 
 .contact .php-email-form .form-group {
 	padding-bottom: 8px;
+}
+
+.form-checkbox {
+	display: flex;
+	align-items: center;
+	font-size: 15px;
+	color: #728394;
+	cursor: pointer;
+	user-select: none;
+	margin-top: 10px;
+}
+
+.form-checkbox._error .checkbox_label::before {
+	box-shadow: 0 0 15px red;
+}
+
+/* Скрываем стандартный чекбокс */
+.form-checkbox .form-check {
+	display: none;
+}
+
+/* Кастомный квадрат */
+.form-checkbox label {
+	position: relative;
+	padding-left: 27px; /* Отступ для чекбокса */
+	cursor: pointer;
+}
+
+/* Фон чекбокса */
+.form-checkbox label::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 2px;
+	width: 18px;
+	height: 18px;
+	border-radius: 4px; /* Скругление углов */
+	background: transparent;
+	border: 2px solid #4eb651; /* Цвет границы */
+	transition: all 0.2s ease;
+}
+
+/* Заливка при выборе */
+.form-checkbox .form-check:checked + label::before {
+	background: #4eb651; /* Цвет при выборе */
+}
+
+.form-control ._error {
+	box-shadow: 0 0 15px red;
 }
 
 .contact .php-email-form .error-message {

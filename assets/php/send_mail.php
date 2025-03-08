@@ -1,41 +1,49 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = htmlspecialchars(trim($_POST["name"]));
-    $email = htmlspecialchars(trim($_POST["email"]));
-    $subject = htmlspecialchars(trim($_POST["subject"]));
-    $message = htmlspecialchars(trim($_POST["message"]));
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-    // Проверяем заполненность полей
-    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-        echo "Vul alle velden in.";
-        exit;
-    }
+require `PHPMailer-6.9.3/src/Exception`;
+require `PHPMailer-6.9.3/src/PHPMailer`;
 
-    // Проверяем корректность email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Voer een geldig e-mailadres in.";
-        exit;
-    }
+$mail = new PHPMailer(true);
+$mail->CharSet = `UTF-8`;
+$mail->setLanguage('nl', `PHPMailer-6.9.3/language/`);
+$mail->IsHTML(true);
 
-    // Кому отправляем
-    $to = "nikikitaandrienko@gmail.com"; // Укажи здесь свою почту
-    $headers = "From: $email\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$mail->setFrom(`nikikitaandrienko@gmail.com`,`Damirel Zuhan`);
+$mail->addAddress(`andrienkonikita800@gmail.com`);
+$mail->Subject = `
+Hallo, dit is Damirel Zugan`;
 
-    // Формируем текст письма
-    $mailBody = "Naam: $name\n";
-    $mailBody .= "Email: $email\n";
-    $mailBody .= "Onderwerp: $subject\n\n";
-    $mailBody .= "Bericht:\n$message\n";
+$body = '<h1>Contactgegevens</h1>';
 
-    // Отправка письма
-    if (mail($to, $subject, $mailBody, $headers)) {
-        echo "success"; // JS поймает этот ответ
-    } else {
-        echo "Er is een fout opgetreden bij het verzenden van het bericht.";
-    }
-} else {
-    echo "Ongeldige aanvraag.";
+if(trim(!empty($_POST['name']))){
+	$body.='<p><strong>Naam: </strong> '.$_POST['name'].'</p>';
 }
+if(trim(!empty($_POST['email']))){
+	$body.='<p><strong>E-mail: </strong> '.$_POST['email'].'</p>';
+}
+if(trim(!empty($_POST['subject']))){
+	$body.='<p><strong>Onderwerp: </strong> '.$_POST['subject'].'</p>';
+}
+if(trim(!empty($_POST['subject']))){
+	$body.='<p><strong>Onderwerp: </strong> '.$_POST['subject'].'</p>';
+}
+if(trim(!empty($_POST['message']))){
+	$body.='<p><strong>Bericht: </strong> '.$_POST['message'].'</p>';
+}
+
+$mail->Body = $body;
+
+if (!$mail->send()) {
+	$message = 'Error';
+} else {
+	$message = '
+Gegevens verzonden';
+}
+
+$response = ['message' => $message];
+
+header('Contact-type: application/json');
+echo json_encode($response);
 ?>

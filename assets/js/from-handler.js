@@ -1,39 +1,76 @@
+'use strict'
+
 document.addEventListener('DOMContentLoaded', function () {
-	const form = document.getElementById('contact-form')
+	const form = document.getElementById('form')
+	form.addEventListener('submit', formSend)
 
-	form.addEventListener('submit', function (event) {
-		event.preventDefault() // Предотвращаем стандартную отправку формы
+	async function formSend(e) {
+		e.preventDefault()
 
-		const formData = new FormData(form)
-		const loading = document.querySelector('.loading')
-		const errorMessage = document.querySelector('.error-message')
-		const sentMessage = document.querySelector('.sent-message')
+		let error = formValidate(form)
+		console.log('Ошибок:', error)
 
-		// Показываем индикатор загрузки
-		loading.style.display = 'block'
-		errorMessage.style.display = 'none'
-		sentMessage.style.display = 'none'
+		if (error === 0) {
+			form.classList.add('_sending')
+			let response = await fetch('../php/send_mail.php', {
+				method: 'POST',
+				body: formData,
+			})
+			if (response.ok) {
+				let result = await response.json()
+				alert(result.message)
+				fromPreview.innerHTML = ''
+				form.reset()
+				form.classList.remove('_sending')
+			} else {
+				alert('Error')
+				form.classList.remove('_sending')
+			}
+		} else {
+			alert('Vul de verplichte velden in')
+		}
+	}
 
-		fetch('send_mail.php', {
-			method: 'POST',
-			body: formData,
-		})
-			.then(response => response.text())
-			.then(data => {
-				loading.style.display = 'none'
-				if (data.trim() === 'success') {
-					sentMessage.style.display = 'block'
-					form.reset() // Очищаем форму после успешной отправки
-				} else {
-					errorMessage.style.display = 'block'
-					errorMessage.textContent = data // Показываем ошибку
+	function formValidate(form) {
+		let error = 0
+		let formReq = document.querySelectorAll('._req')
+
+		for (let index = 0; index < formReq.length; index++) {
+			const input = formReq[index]
+			formRemoveError(input)
+
+			if (input.classList.contains('_email')) {
+				if (!emailTest(input)) {
+					console.log('Ошибка в email:', input.value)
+					formAddError(input)
+					error++
 				}
-			})
-			.catch(error => {
-				loading.style.display = 'none'
-				errorMessage.style.display = 'block'
-				errorMessage.textContent =
-					'Er is een fout opgetreden. Probeer het later opnieuw.'
-			})
-	})
+			} else if (input.type === 'checkbox' && !input.checked) {
+				console.log('Ошибка в чекбоксе:', input)
+				formAddError(input)
+				error++
+			} else if (input.value.trim() === '') {
+				console.log('Ошибка: пустое поле', input)
+				formAddError(input)
+				error++
+			}
+		}
+
+		console.log('Общее количество ошибок:', error)
+		return error
+	}
+
+	function formAddError(input) {
+		input.parentElement.classList.add('_error')
+		input.classList.add('_error')
+	}
+
+	function formRemoveError(input) {
+		input.parentElement.classList.remove('_error')
+		input.classList.remove('_error')
+	}
+
+	function emailTest(input) {
+		return !/^\w+([\.-]?\w+)([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value)
+	}
 })

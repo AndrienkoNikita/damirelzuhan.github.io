@@ -518,19 +518,19 @@
 					<div class="row mt-1">
 						<div class="col-lg-4">
 							<div class="info">
-								<div class="address">
+								<div class="address copy-text">
 									<i class="bi bi-geo-alt"></i>
 									<h4>Location:</h4>
 									<p>The Netherlands, Heerenveen 8441 AC, Schans 65</p>
 								</div>
 
-								<div class="email">
+								<div class="email copy-text">
 									<i class="bi bi-envelope"></i>
 									<h4>Email:</h4>
 									<p>damirelzuhan@gmail.com</p>
 								</div>
 
-								<div class="phone">
+								<div class="phone copy-text">
 									<i class="bi bi-phone"></i>
 									<h4>Calling:</h4>
 									<p>+31642493260</p>
@@ -544,13 +544,14 @@
 								method="post"
 								role="form"
 								class="php-email-form"
+								id="form"
 							>
 								<div class="row">
 									<div class="col-md-6 form-group">
 										<input
 											type="text"
 											name="name"
-											class="form-control"
+											class="form-control _req"
 											id="name"
 											placeholder="Your name"
 											required
@@ -559,7 +560,7 @@
 									<div class="col-md-6 form-group mt-3 mt-md-0">
 										<input
 											type="email"
-											class="form-control"
+											class="form-control _req _email"
 											name="email"
 											id="email"
 											placeholder="Your email"
@@ -586,6 +587,18 @@
 										required
 									></textarea>
 								</div>
+								<div class="form-checkbox">
+									<input
+										class="form-check _req"
+										checked
+										type="checkbox"
+										name="agreemet"
+										id="formAgreement"
+									/>
+									<label for="formAgreement">
+										I give my consent to the processing of personal data</label
+									>
+								</div>
 								<div class="my-3">
 									<div class="loading">Loading</div>
 									<div class="error-message"></div>
@@ -611,15 +624,24 @@
 				<h3>Damirel Zuhan</h3>
 
 				<div class="social-links">
-					<a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-					<a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
 					<a
 						href="https://www.instagram.com/damirel.zuhan?igsh=dzJhZnpkb2IxOThu"
 						target="_blank"
 						><i class="bx bxl-instagram"></i
 					></a>
-					<a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-					<a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+
+					<a
+						href="https://www.behance.net/damirelzuhan1"
+						class="behance"
+						target="_blank"
+						><i class="bx bxl-behance"></i
+					></a>
+					<a
+						href="https://www.linkedin.com/in/damirel-zuhan-1593a3333/"
+						class="linkedin"
+						target="_blank"
+						><i class="bx bxl-linkedin"></i
+					></a>
 				</div>
 			</div>
 		</footer>
@@ -629,6 +651,7 @@
 		<script src="assets/js/swiper-bundle.min.js"></script>
 		<script src="assets/js/tilt.js"></script>
 		<script src="assets/js/from-handler.js"></script>
+		<script src="assets/js/copy.js"></script>
 		<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 		<script src="assets/vendor/aos/aos.js"></script>
 		<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -637,7 +660,6 @@
 		<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 		<script src="assets/vendor/typed.js/typed.umd.js"></script>
 		<script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-		<script src="assets/vendor/php-email-form/validate.js"></script>
 
 		<!-- Template Main JS File -->
 		<script src="assets/js/main.js"></script>
