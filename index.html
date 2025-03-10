@@ -539,13 +539,7 @@
 						</div>
 
 						<div class="col-lg-8 mt-5 mt-lg-0">
-							<form
-								action="assets/php/send_mail.php"
-								method="post"
-								role="form"
-								class="php-email-form"
-								id="form"
-							>
+							<form method="post" role="form" class="php-email-form" id="form">
 								<div class="row">
 									<div class="col-md-6 form-group">
 										<input
@@ -554,7 +548,6 @@
 											class="form-control _req"
 											id="name"
 											placeholder="Uw naam"
-											required
 										/>
 									</div>
 									<div class="col-md-6 form-group mt-3 mt-md-0">
@@ -564,7 +557,6 @@
 											name="email"
 											id="email"
 											placeholder="Uw email"
-											required
 										/>
 									</div>
 								</div>
@@ -586,27 +578,7 @@
 										placeholder="Bericht"
 									></textarea>
 								</div>
-								<div class="form-checkbox">
-									<input
-										class="form-check _req"
-										type="checkbox"
-										name="agreemet"
-										id="formAgreement"
-									/>
-									<label for="formAgreement" class="checkbox_label">
-										Ik geef mijn toestemming voor de verwerking van
-										persoonsgegevens</label
-									>
-								</div>
-								<div class="my-3">
-									<div class="loading" style="display: none">Loading...</div>
-									<div class="error-message" style="display: none; color: red">
-										!Error
-									</div>
-									<div class="sent-message" style="display: none; color: green">
-										Your message has been sent. Thank you!
-									</div>
-								</div>
+
 								<div class="text-center">
 									<button type="submit">Sturen</button>
 								</div>
@@ -651,7 +623,9 @@
 		<!-- Vendor JS Files -->
 		<script src="assets/js/swiper-bundle.min.js"></script>
 		<script src="assets/js/tilt.js"></script>
-		<script src="assets/js/from-handler.js"></script>
+		<script src="assets/js/inputmask.min.js"></script>
+		<script src="assets/js/just-validate.min.js"></script>
+		<script type="module" src="assets/js/from-handler.js"></script>
 		<script src="assets/js/copy.js"></script>
 		<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 		<script src="assets/vendor/aos/aos.js"></script>

@@ -1,76 +1,45 @@
-'use strict'
+let validation = new JustValidate('form')
 
-document.addEventListener('DOMContentLoaded', function () {
-	const form = document.getElementById('form')
-	form.addEventListener('submit', formSend)
-
-	async function formSend(e) {
-		e.preventDefault()
-
-		let error = formValidate(form)
-		console.log('Ошибок:', error)
-
-		if (error === 0) {
-			form.classList.add('_sending')
-			let response = await fetch('../php/send_mail.php', {
-				method: 'POST',
-				body: formData,
-			})
-			if (response.ok) {
-				let result = await response.json()
-				alert(result.message)
-				fromPreview.innerHTML = ''
-				form.reset()
-				form.classList.remove('_sending')
-			} else {
-				alert('Error')
-				form.classList.remove('_sending')
-			}
-		} else {
-			alert('Vul de verplichte velden in')
+validation
+	.addField('#name', [
+		{
+			rule: 'required',
+			errorMessage: 'Enter your name!',
+		},
+		{
+			rule: 'minLength',
+			value: 2,
+			errorMessage: 'Minimum 2 characters!',
+		},
+	])
+	.addField('#email', [
+		{
+			rule: 'required',
+			errorMessage: 'Enter your email!',
+		},
+		{
+			rule: 'email',
+			errorMessage: 'Please enter a valid email!',
+		},
+	])
+	.onSuccess(async function () {
+		let data = {
+			name: document.getElementById('name').value,
+			email: document.getElementById('email').value,
+			subject: document.getElementById('subject').value,
+			message: document.getElementById('message').value,
 		}
-	}
+		console.log(data)
 
-	function formValidate(form) {
-		let error = 0
-		let formReq = document.querySelectorAll('._req')
+		let response = await fetch('../php/send_mail.php', {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json; charset=UTF-8',
+			},
+		})
 
-		for (let index = 0; index < formReq.length; index++) {
-			const input = formReq[index]
-			formRemoveError(input)
+		let result = await response.text()
 
-			if (input.classList.contains('_email')) {
-				if (!emailTest(input)) {
-					console.log('Ошибка в email:', input.value)
-					formAddError(input)
-					error++
-				}
-			} else if (input.type === 'checkbox' && !input.checked) {
-				console.log('Ошибка в чекбоксе:', input)
-				formAddError(input)
-				error++
-			} else if (input.value.trim() === '') {
-				console.log('Ошибка: пустое поле', input)
-				formAddError(input)
-				error++
-			}
-		}
-
-		console.log('Общее количество ошибок:', error)
-		return error
-	}
-
-	function formAddError(input) {
-		input.parentElement.classList.add('_error')
-		input.classList.add('_error')
-	}
-
-	function formRemoveError(input) {
-		input.parentElement.classList.remove('_error')
-		input.classList.remove('_error')
-	}
-
-	function emailTest(input) {
-		return !/^\w+([\.-]?\w+)([\.-]?\w+)*(\.\w{2,8})+$/.test(input.value)
-	}
-})
+		alert(result)
+	})
