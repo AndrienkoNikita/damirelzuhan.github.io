@@ -31,7 +31,7 @@ validation
 		}
 		console.log(data)
 
-		let response = await fetch('../php/send_mail.php', {
+		let response = await fetch('/assets/php/send_mail.php', {
 			method: 'POST',
 			body: JSON.stringify(data),
 			headers: {

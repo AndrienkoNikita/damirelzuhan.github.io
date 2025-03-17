@@ -1,44 +1,57 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// Подключение библиотеки
+require 'phpmailer/PHPMailer';
+require 'phpmailer/SMTP';
+require 'phpmailer/Exception';
 
-require 'PHPMailer-6.9.3/src/Exception.php';
-require 'PHPMailer-6.9.3/src/PHPMailer.php';
+// Получение данных
+$json = file_get_contents('php://input'); // Получение json строки
+$data = json_decode($json, true); // Преобразование json
 
-$mail = new PHPMailer(true);
-$mail->CharSet = 'UTF-8';
-$mail->setLanguage('nl', 'PHPMailer-6.9.3/language/');
-$mail->IsHTML(true);
+// Данные
+$name = $data['name'];
+$email = $data['email'];
+$subject = $data['subject'];
+$message = $data['message'];
 
-$mail->setFrom('nikikitaandrienko@gmail.com', 'Damirel Zuhan');
-$mail->addAddress('andrienkonikita800@gmail.com');
-$mail->Subject = 'Hallo, dit is Damirel Zugan';
+// Контент письма
+$title = 'Заявка с сайта'; // Название письма
+$body = '<p>Имя: <strong>'.$name.'</strong></p>'.
+        '<p>E-mail: <strong>'.$email.'</strong></p>'.
+        '<p>Предмет: <strong>'.$subject.'</strong></p>'.
+        '<p>Сообщение: <strong>'.$message.'</strong></p>';
 
-$body = '<h1>Contactgegevens</h1>';
+// Настройки PHPMailer
+$mail = new PHPMailer\PHPMailer\PHPMailer();
 
-if(trim(!empty($_POST['name']))){
-    $body .= '<p><strong>Naam: </strong> '.$_POST['name'].'</p>';
+try {
+  $mail->isSMTP();
+  $mail->CharSet = 'UTF-8';
+  $mail->SMTPAuth   = true;
+
+  // Настройки почты отправителя
+  $mail->Host       = 'smtp.gmail.com'; // SMTP сервера вашей почты
+  $mail->Username   = 'zuhandamirel833@gmail.com'; // Логин на почте
+  $mail->Password   = 'kykaznffrnyiihhb'; // Пароль на почте
+  $mail->SMTPSecure = 'ssl';
+  $mail->Port       = 465;
+
+  $mail->setFrom('zuhandamirel833@gmail.com', 'Заявка с сайта'); // Адрес самой почты и имя отправителя
+
+  // Получатель письма
+  $mail->addAddress('nikikitaandrienko@gmail.com');
+
+  // Отправка сообщения
+  $mail->isHTML(true);
+  $mail->Subject = $title;
+  $mail->Body = $body;
+
+  $mail->send('d');
+
+  // Сообщение об успешной отправке
+  echo ('Сообщение отправлено успешно!');
+
+} catch (Exception $e) {
+  header('HTTP/1.1 400 Bad Request');
+  echo('Сообщение не было отправлено! Причина ошибки: {$mail->ErrorInfo}');
 }
-if(trim(!empty($_POST['email']))){
-    $body .= '<p><strong>E-mail: </strong> '.$_POST['email'].'</p>';
-}
-if(trim(!empty($_POST['subject']))){
-    $body .= '<p><strong>Onderwerp: </strong> '.$_POST['subject'].'</p>';
-}
-if(trim(!empty($_POST['message']))){
-    $body .= '<p><strong>Bericht: </strong> '.$_POST['message'].'</p>';
-}
-
-$mail->Body = $body;
-
-if (!$mail->send()) {
-    $message = 'Error';
-} else {
-    $message = 'Gegevens verzonden';
-}
-
-$response = ['message' => $message];
-
-header('Content-Type: application/json');
-echo json_encode($response);
-?>
