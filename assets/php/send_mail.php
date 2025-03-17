@@ -39,14 +39,14 @@ try {
   $mail->setFrom('zuhandamirel833@gmail.com', 'Заявка с сайта'); // Адрес самой почты и имя отправителя
 
   // Получатель письма
-  $mail->addAddress('nikikitaandrienko@gmail.com');
+  $mail->addAddress('zuhandamirel833@gmail.com');
 
   // Отправка сообщения
   $mail->isHTML(true);
   $mail->Subject = $title;
   $mail->Body = $body;
 
-  $mail->send('d');
+  $mail->send('');
 
   // Сообщение об успешной отправке
   echo ('Сообщение отправлено успешно!');

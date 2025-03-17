@@ -4,22 +4,45 @@ validation
 	.addField('#name', [
 		{
 			rule: 'required',
-			errorMessage: 'Enter your name!',
+			errorMessage: 'Введите имя!',
 		},
 		{
 			rule: 'minLength',
 			value: 2,
-			errorMessage: 'Minimum 2 characters!',
+			errorMessage: 'Минимум 2 символа!',
 		},
 	])
 	.addField('#email', [
 		{
 			rule: 'required',
-			errorMessage: 'Enter your email!',
+			errorMessage: 'Введите почту!',
 		},
 		{
 			rule: 'email',
-			errorMessage: 'Please enter a valid email!',
+			errorMessage: 'Введите полную почту!',
+		},
+	])
+
+	.addField('#subject', [
+		{
+			rule: 'required',
+			errorMessage: 'Введите предмет!',
+		},
+		{
+			rule: 'minLength',
+			value: 2,
+			errorMessage: 'Минимум 2 символа!',
+		},
+	])
+	.addField('#message', [
+		{
+			rule: 'required',
+			errorMessage: 'Введите сообщение!',
+		},
+		{
+			rule: 'minLength',
+			value: 10,
+			errorMessage: 'Минимум 10 символов!',
 		},
 	])
 	.onSuccess(async function () {
@@ -29,9 +52,8 @@ validation
 			subject: document.getElementById('subject').value,
 			message: document.getElementById('message').value,
 		}
-		console.log(data)
 
-		let response = await fetch('/assets/php/send_mail.php', {
+		let response = await fetch('send_mail.php', {
 			method: 'POST',
 			body: JSON.stringify(data),
 			headers: {

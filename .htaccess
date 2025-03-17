@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Перенаправление /en -> index_eng.html
+RewriteRule ^en$ /index_eng.html [L]
+
+# Перенаправление /nl -> index.html
+RewriteRule ^nl$ /index.html [L]
