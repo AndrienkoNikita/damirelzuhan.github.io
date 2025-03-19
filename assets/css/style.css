@@ -1,11 +1,3 @@
-/**
-* Template Name: MyResume
-* Updated: Jun 13 2023 with Bootstrap v5.3.0
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
@@ -326,6 +318,7 @@ h6 {
 	cursor: pointer;
 	border-radius: 50px;
 	padding: 5px;
+	color: #ffffff;
 }
 
 .mobile-nav-toggle i {
@@ -444,6 +437,14 @@ h6 {
 	pointer-events: none;
 }
 
+.top-image-phone {
+	display: none;
+}
+
+.top-image-phone2 {
+	display: none;
+}
+
 /* Нижня картинка */
 .bottom-image {
 	position: absolute;
@@ -451,6 +452,10 @@ h6 {
 	bottom: -40%; /* Роби від’ємним, щоб змістити нижче */
 	width: 100%; /* Регулюй розмір */
 	pointer-events: none;
+}
+
+.bottom-image-phone {
+	display: none;
 }
 
 @media (min-width: 992px) {
@@ -514,12 +519,27 @@ h6 {
 
 #hero .social-links a {
 	font-size: 34px;
-	display: inline-block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: #45505b;
 	line-height: 1;
 	margin-right: 20px;
 	transition: 0.3s;
 	z-index: 2;
+}
+
+#hero .social-links i:before {
+	display: flex;
+	align-items: center;
+	font-size: 34px;
+}
+.social-links .bxl-behance:before {
+	transform: translateY(1px);
+}
+
+.social-links .bxl-linkedin:before {
+	transform: translateY(-2px);
 }
 
 #hero .social-links a:hover {
@@ -530,7 +550,6 @@ h6 {
 	#hero {
 		text-align: center;
 	}
-
 	#hero h1 {
 		font-size: 60px;
 		line-height: 86px;
@@ -558,11 +577,55 @@ h6 {
 	.img-fluid {
 		margin-top: 0%;
 	}
+
+	.top-image {
+		display: none;
+	}
+
+	.top-image-phone {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 65%;
+		pointer-events: none;
+	}
+
+	.bottom-image {
+		display: none;
+	}
+
+	.bottom-image-phone {
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom: 5%; /* Роби від’ємним, щоб змістити нижче */
+		width: 65%; /* Регулюй розмір */
+		pointer-events: none;
+	}
 }
 
-/*--------------------------------------------------------------
-# Sections General
---------------------------------------------------------------*/
+@media (max-width: 560px) {
+	.top-image-phone {
+		display: none;
+	}
+
+	.top-image-phone2 {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 83%;
+		pointer-events: none;
+	}
+
+	.bottom-image-phone {
+		width: 73%;
+		bottom: 5%;
+	}
+}
+
+/*-------------------------------------------------------------- # Sections General --------------------------------------------------------------*/
 section {
 	padding: 60px 0;
 	overflow: hidden;

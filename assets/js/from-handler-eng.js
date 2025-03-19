@@ -4,45 +4,45 @@ validation
 	.addField('#name', [
 		{
 			rule: 'required',
-			errorMessage: 'Voer uw naam in!',
+			errorMessage: 'Enter your name!',
 		},
 		{
 			rule: 'minLength',
 			value: 2,
-			errorMessage: 'Minimaal 2 karakters!',
+			errorMessage: 'Minimum 2 characters!',
 		},
 	])
 	.addField('#email', [
 		{
 			rule: 'required',
-			errorMessage: 'Voer uw e-mailadres in!',
+			errorMessage: 'Enter your email!',
 		},
 		{
 			rule: 'email',
-			errorMessage: 'Voer uw volledige e-mailadres in!',
+			errorMessage: 'Please enter your full email!',
 		},
 	])
 
 	.addField('#subject', [
 		{
 			rule: 'required',
-			errorMessage: 'Voer artikel in!',
+			errorMessage: 'Enter your subject!',
 		},
 		{
 			rule: 'minLength',
 			value: 2,
-			errorMessage: 'Minimaal 2 karakters!',
+			errorMessage: 'Minimum 2 characters!',
 		},
 	])
 	.addField('#message', [
 		{
 			rule: 'required',
-			errorMessage: 'Voer uw bericht in!',
+			errorMessage: 'Enter your message!',
 		},
 		{
 			rule: 'minLength',
 			value: 10,
-			errorMessage: 'Minimaal 10 tekens!',
+			errorMessage: 'Minimum 10 characters!',
 		},
 	])
 	.onSuccess(async function () {
