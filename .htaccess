@@ -1,3 +1,5 @@
+
+
 <IfModule mod_expires.c>
 
     Header append Cache-Control "public"
@@ -24,12 +26,3 @@
 		
 
 </IfModule>
-
-# Добавляем правила перенаправления URL
-RewriteEngine On
-
-# Перенаправляем site.com/nl на index.html
-RewriteRule ^nl$ /index.html [L]
-
-# Перенаправляем site.com/en на index_eng.html
-RewriteRule ^en$ /index_eng.html [L]

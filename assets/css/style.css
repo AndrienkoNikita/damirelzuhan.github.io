@@ -534,6 +534,7 @@ h6 {
 	align-items: center;
 	font-size: 34px;
 }
+
 .social-links .bxl-behance:before {
 	transform: translateY(1px);
 }
@@ -620,8 +621,8 @@ h6 {
 	}
 
 	.bottom-image-phone {
-		width: 73%;
-		bottom: 3%;
+		width: 72%;
+		bottom: -2%;
 	}
 }
 
